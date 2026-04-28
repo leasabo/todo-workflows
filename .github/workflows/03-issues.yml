@@ -1,0 +1,22 @@
+name: 3 - Trigger por Issues
+
+on:
+  issues:
+    types:
+      - opened
+
+jobs:
+  mensaje-issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Imprimir mensaje de nuevo issue
+        run: echo "Nuevo issue creado"
+
+      - name: Mostrar info del issue
+        run: |
+          echo "Issue número: ${{ github.event.issue.number }}"
+          echo "Título: ${{ github.event.issue.title }}"
+          echo "Creado por: ${{ github.actor }}"
