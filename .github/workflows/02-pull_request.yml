@@ -1,0 +1,22 @@
+name: 2 - Trigger por Pull Request
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  mensaje-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Imprimir mensaje de pull request
+        run: echo "Pull request detectado"
+
+      - name: Mostrar info del PR
+        run: |
+          echo "PR número: ${{ github.event.pull_request.number }}"
+          echo "Título: ${{ github.event.pull_request.title }}"
+          echo "Autor: ${{ github.actor }}"
