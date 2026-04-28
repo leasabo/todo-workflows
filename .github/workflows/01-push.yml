@@ -1,0 +1,22 @@
+name: 1 - Trigger por Push
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  mensaje-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Imprimir mensaje de push
+        run: echo "Workflow activado por push"
+
+      - name: Mostrar info del commit
+        run: |
+          echo "Commit: ${{ github.sha }}"
+          echo "Autor: ${{ github.actor }}"
+          echo "Rama: ${{ github.ref_name }}"
