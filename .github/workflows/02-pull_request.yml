@@ -3,7 +3,7 @@ name: 2 - Trigger por Pull Request
 on:
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
   mensaje-pr:
