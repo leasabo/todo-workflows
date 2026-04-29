@@ -19,4 +19,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Imprimir nivel de alerta
-        run: echo "Nivel de alerta seleccionado: ${{ github.event.inputs.nivel_alerta }}"
+        run: |
+          echo "Nivel de alerta seleccionado: ${{ github.event.inputs.nivel_alerta }}"
