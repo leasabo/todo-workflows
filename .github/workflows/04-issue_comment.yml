@@ -1,0 +1,24 @@
+name: 4 - Trigger por Comentario en PR
+
+on:
+  issue_comment:
+    types:
+      - created
+
+jobs:
+  mensaje-comentario-pr:
+    # Solo corre si el comentario es en un Pull Request (no en un issue simple)
+    if: github.event.issue.pull_request != null
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Imprimir mensaje de comentario en PR
+        run: echo "Comentario en PR detectado"
+
+      - name: Mostrar info del comentario
+        run: |
+          echo "PR número: ${{ github.event.issue.number }}"
+          echo "Comentario de: ${{ github.actor }}"
+          echo "Contenido: ${{ github.event.comment.body }}"
