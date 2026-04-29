@@ -1,0 +1,22 @@
+name: 6 - Trigger Programado (schedule)
+
+on:
+  schedule:
+    # Se ejecuta cada hora (cron: minuto hora día mes día_semana)
+    # GitHub Actions no permite menos de 5 minutos entre ejecuciones
+    - cron: "0 * * * *"
+
+jobs:
+  mensaje-programado:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Imprimir mensaje de ejecución programada
+        run: echo "Ejecución programada"
+
+      - name: Mostrar fecha y hora de ejecución
+        run: |
+          echo "Fecha y hora UTC: $(date)"
+          echo "Repositorio: ${{ github.repository }}"
