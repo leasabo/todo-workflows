@@ -4,8 +4,9 @@ on:
   workflow_dispatch:
     inputs:
       nivel_alerta:
-        description: "Seleccioná el nivel de alerta"
+        description: 'Selecciona el nivel de alerta'
         required: true
+        default: 'bajo'
         type: choice
         options:
           - bajo
@@ -17,22 +18,5 @@ jobs:
   mensaje-manual:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout del repositorio
-        uses: actions/checkout@v4
-
-      - name: Imprimir nivel de alerta seleccionado
+      - name: Imprimir nivel de alerta
         run: echo "Nivel de alerta seleccionado: ${{ github.event.inputs.nivel_alerta }}"
-
-      - name: Lógica según nivel
-        run: |
-          NIVEL="${{ github.event.inputs.nivel_alerta }}"
-          echo "Ejecutando workflow manual"
-          if [ "$NIVEL" = "critico" ]; then
-            echo "⚠️  ALERTA CRÍTICA - Revisión inmediata requerida"
-          elif [ "$NIVEL" = "alto" ]; then
-            echo "🔴 Alerta alta - Revisar pronto"
-          elif [ "$NIVEL" = "medio" ]; then
-            echo "🟡 Alerta media - Monitorear"
-          else
-            echo "🟢 Alerta baja - Todo en orden"
-          fi
